@@ -1,0 +1,126 @@
+Laravel:
+Write code and explain:
+
+What is Lazy vs Eager Loading in Laravel?
+Ans: 1) Normal eloquent query is lazy loadding
+    here query will execute n'th number of data
+    ex: $model = model::all() 
+            $model->relational model methods;
+            or modelName::get()
+    1)Eloquent query with relationall model  Eager loadding
+    here only two time query will execute
+    
+    ex: model::with('relational model methods')->get() or modelName::with('relational model methods')->limit(number)->get()
+
+Explain the active record concept in Laravel with a sample snippet?
+
+Ans: Active record create database schema using model and it helps to store the data to DB;
+        $variable = new modelName;
+        $variable->name = "data";
+        $variable->save();
+
+What are Closures in Laravel?
+Ans: Closures is used in route web.php function with no name is called Closure function.
+Route::get('hello', function(){
+    return "Closure function value";
+})
+ 
+What is a Dependency injection in Laravel?
+
+Ans: In laravel dependency injection is commonly used in controller methods
+    ex: Request $request
+
+What is an Observer?
+Ans: Observer is an event bydefault invoke where model is executing
+    ex: creating, created, saving, saved, updating, updated and retrieved.
+
+
+Explain:
+What are the Default packages?
+
+Ans: Cashier, Envoy, Passport, Scout, Socialite, Horizon, and Telescope.
+
+What is Route caching?
+
+Ans: It will improve the Application performance
+    Ex: php artisan route:cache
+
+What are Jobs and Middleware?
+
+Ans: 1) Jobs
+    I was used this queued job for sending email
+    ex: php artisan make:job jobName
+    2) Middleware
+        Middleware will fillters the request data and http url
+        ex: php artisan make:middleware middlewareName
+
+- What are Deferred Providers in laravel?
+
+What is namespace in Laravel?
+    
+Ans: Namespace defines the class of elements
+    ex: namespace App\Models;
+
+SQL:
+Explain Joins with an example
+Ans: 1) join is concept to join two are more table data and get in single schema.
+    ex: model1::where('id',1)
+        ->join('table2', 'model1.id', '=', 'table2.user_id')
+        ->select('N number of coloum name')
+        ->get()
+    
+    2) Query Builder
+    ex: DB::table('table1')
+            ->join('table2', 'table1.id', '=', 'table2.user_id')
+            ->select('N number of coloum name')
+            ->get()
+            ->get();
+    using join get only > 5 results
+    DB::table('table1')
+        ->join('table2', function ($join) {
+            $join->on('table1.id', '=', 'table2.user_id')
+                 ->where('table2.user_id', '>', 5);
+        })
+        ->get();
+
+Write a complex query?
+Ans: 
+    1)select * from table  where (name='%_%' OR email='%@gmail.com%')AND (phone='%+91%' OR active=true); 
+        its little complicated in eloquent query.
+    2) select data from employee table who logged in saturday sunday and team lead.
+    3) diplay customers who has less than 15 transaction get transaction data.
+
+
+
+
+Write CRUD in Laravel Query Builder?
+
+CRUD opration in laravel
+
+create => DB::table(table_name)->insert(['coloum_name' => 'data']);
+
+Read => DB::table('table_name')->select('coloum1', 'coloum1 as user_coloum')->get();
+
+update => DB::table('table_name')->where('instance_id', number)->update(['coloumn' => value]);
+
+Delete => DB::table('table_name')->where('coloumn' = value)->delete();
+
+What are Accessors and Mutators in Eloquent and why should you use them?
+    Ans: Changing the behaviar of attribut is called Mutators
+    ex: inside model 
+    sePasswordAttribut($val){
+        $this->attibut['password'] = bcrypt($val)
+    }
+    Mutators: Changing the behaviar of attribut
+    ex: getNameAttribut($name)
+    {
+        return ucfirst($name)
+    }
+
+What is CSRF and JWT token?
+Ans: 1) CSRF is for same application
+        ex: csrf_toke
+    2)JWT for rest application
+        ex: Authentication token through header
+
+
